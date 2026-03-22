@@ -1,3 +1,15 @@
+## Progress Tracker (auto-generated)
+
+<!-- PROGRESS-START -->
+| User | Progress | L1 | L2 | L3 | L4 | L5 | L6 | L7 | L8 | L9 | L10 | L11 | L12 | L13 | L14 | L15 | L16 | L17 |
+|---|---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| ljx | 6% ▰▱▱▱▱▱▱▱▱▱ | 🟩 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| yj | 0% ▱▱▱▱▱▱▱▱▱▱ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| tg | 0% ▱▱▱▱▱▱▱▱▱▱ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+<!-- PROGRESS-END -->
+
+---
+
 # Spring 2025 CS336 lectures
 
 This repo contains the lecture materials for "Stanford CS336: Language modeling from scratch".

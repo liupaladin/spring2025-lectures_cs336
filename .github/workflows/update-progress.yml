@@ -1,0 +1,41 @@
+name: Update Progress
+
+on:
+  workflow_dispatch:
+    inputs:
+      user:
+        description: 'User name (e.g. User 1)'
+        required: true
+        default: 'User 1'
+      finished:
+        description: 'Number of lectures finished (0..17)'
+        required: true
+        default: '0'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Run set_progress
+        run: |
+          python3 scripts/set_progress.py --user "${{ inputs.user }}" --finished ${{ inputs.finished }}
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md progress.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update progress: ${{ inputs.user }} -> ${{ inputs.finished }}"
+            git push
+          fi
