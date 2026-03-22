@@ -10,7 +10,9 @@
 
 ---
 
-**Landing page:** View the group landing page at [group_landing.html](group_landing.html#L1-L1). It shows the same progress tracker, a collective `questions.md`, and per-user notes in `notes/`.
+**Landing page:** Published (may take a minute after deploy) at [https://liupaladin.github.io/spring2025-lectures_cs336/group_landing.html](https://liupaladin.github.io/spring2025-lectures_cs336/group_landing.html). It shows the same progress tracker, a collective `questions.md`, and per-user notes in `notes/`.
+
+If you still get a 404, enable Pages to serve the `gh-pages` branch at: GitHub → Settings → Pages → Source: `gh-pages` / root.
 
 
 # Spring 2025 CS336 lectures
