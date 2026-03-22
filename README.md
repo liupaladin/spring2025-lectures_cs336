@@ -10,6 +10,9 @@
 
 ---
 
+**Landing page:** View the group landing page at [group_landing.html](group_landing.html#L1-L1). It shows the same progress tracker, a collective `questions.md`, and per-user notes in `notes/`.
+
+
 # Spring 2025 CS336 lectures
 
 This repo contains the lecture materials for "Stanford CS336: Language modeling from scratch".
