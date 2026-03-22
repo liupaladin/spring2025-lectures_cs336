@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CS336 Learning Group</title>
+    <style>
+        body {
+            font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial;
+            margin: 24px;
+            color: #0b1220
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+
+        .card {
+            border: 1px solid #e6eef8;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            background: #fbfdff
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%
+        }
+
+        th,
+        td {
+            padding: 6px;
+            border: 1px solid #e6eef8;
+            text-align: center
+        }
+
+        th {
+            background: #f1f7fb
+        }
+
+        .notes-list a {
+            display: block;
+            margin: 6px 0
+        }
+
+        .small {
+            font-size: 0.9rem;
+            color: #394050
+        }
+
+        .progress-bar {
+            font-family: monospace
+        }
+
+        form.inline {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .muted {
+            color: #6b7280;
+            font-size: 0.9rem
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>CS336 Learning Group</h1>
+        <div class="muted">Landing page · Shared notes · Questions</div>
+    </header>
+
+    <section class="card">
+        <h2>Progress Tracker</h2>
+        <div id="progress-area">Loading...</div>
+        <div class="small">To update progress use the repo workflow or `scripts/set_progress.py` (see README).</div>
+    </section>
+
+    <section class="card">
+        <h2>Questions (collective)</h2>
+        <p class="small">Use the file <a href="questions.md">questions.md</a> to add questions for the group.</p>
+    </section>
+
+    <section class="card">
+        <h2>User Notes</h2>
+        <div class="notes-list">
+            <a href="notes/ljx.md">ljx — Notes</a>
+            <a href="notes/yj.md">yj — Notes</a>
+            <a href="notes/tg.md">tg — Notes</a>
+        </div>
+    </section>
+
+    <footer class="small" style="margin-top:18px">This page reads <code>progress.json</code> to render the table. Keep
+        that file up-to-date or use the "Update Progress" workflow.</footer>
+
+    <script>
+        const TOTAL = 17;
+        function pctBar(finished) {
+            const pct = Math.round((finished / TOTAL) * 100);
+            const width = 12;
+            const filled = Math.round((pct / 100) * width);
+            const bar = '▰'.repeat(filled) + '▱'.repeat(width - filled);
+            return `${pct}% ${bar}`;
+        }
+
+        async function render() {
+            try {
+                const res = await fetch('progress.json');
+                if (!res.ok) throw new Error('progress.json not found');
+                const data = await res.json();
+                const users = Object.keys(data);
+                let html = '';
+                html += '<table><thead><tr><th>User</th><th>Progress</th>';
+                for (let i = 1; i <= TOTAL; i++) html += `<th>L${i}</th>`;
+                html += '</tr></thead><tbody>';
+                for (const u of users) {
+                    const finished = Math.max(0, Math.min(TOTAL, Number(data[u] || 0)));
+                    html += `<tr><td>${u}</td><td class="progress-bar">${pctBar(finished)}</td>`;
+                    for (let i = 0; i < TOTAL; i++) html += `<td>${i < finished ? '🟩' : '⬜'}</td>`;
+                    html += '</tr>';
+                }
+                html += '</tbody></table>';
+                document.getElementById('progress-area').innerHTML = html;
+            } catch (e) {
+                document.getElementById('progress-area').textContent = 'Error loading progress.json: ' + e.message;
+            }
+        }
+        render();
+    </script>
+</body>
+
+</html>
